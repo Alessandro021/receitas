@@ -5,8 +5,6 @@ import Home from '../pages/home'
 import Detail from '../pages/detail'
 import Search from '../pages/search'
 
-import {Entypo} from '@expo/vector-icons'
-
 const Stack = createNativeStackNavigator();
 
 export default function StackRoutes(){
@@ -22,14 +20,9 @@ export default function StackRoutes(){
             <Stack.Screen 
                 name='Detail' 
                 component={Detail}
-                options={({route}) => ({
-                    title: route.params?.data.name,
-                    headerRight: () => (
-                        <Pressable onPress={() => console.log("ola")}>
-                            <Entypo name='heart' size={28} color='#FF4141'/>
-                        </Pressable>
-                    )
-                })} 
+                // options={({route}) => ({
+                //     title: route.params?.data.name,
+                // })} 
             />
             <Stack.Screen 
                 name='Search' 
