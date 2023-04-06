@@ -1,5 +1,5 @@
 import { useLayoutEffect, useState } from 'react';
-import { View, Text, StyleSheet, Pressable, ScrollView, Image, Modal} from 'react-native'
+import { View, Text, StyleSheet, Pressable, ScrollView, Image, Modal, Share} from 'react-native'
 import { useRoute, useNavigation } from '@react-navigation/native'
 import {Entypo, Ionicons, AntDesign, Feather} from '@expo/vector-icons'
 import COLOR from '../../services'
@@ -8,31 +8,74 @@ import Ingredients from '../../components/ingredients';
 import Instructions from '../../components/instructions';
 import VideoView from '../../components/video';
 
-
+import { isFavorite, saveFavorite, removeItem } from '../../utils/storage';
 
 export default function Detail({data}){
     const route = useRoute();
     const navigation = useNavigation();
     const [showVideo, setShowVideo] = useState(false)
+    const [favorite, setFavorite] = useState(false)
 
     useLayoutEffect(() => {
+
+        async function getStatusFavorites(){
+            const receipeFavorite = await isFavorite(route.params?.data)
+            setFavorite(receipeFavorite)
+        }
+
+        getStatusFavorites()
+
         navigation.setOptions({
             title: route.params?.data ? route.params?.data.name : "Detalhes da receita",
             headerRight: () => (
-                <Pressable onPress={() => {}}>
-                    <Ionicons 
-                        name='heart'
-                        size={28}
-                        color="#FF4141"
-                    />
+                <Pressable onPress={() => handleFavoriteReceipe(route.params?.data)}>
+                    {favorite ? 
+                    (
+                        <Ionicons
+                            name='heart'
+                            size={28}
+                            color="#FF4141"
+                        />
+                    ) :
+
+                    (
+                        <Ionicons
+                            name='heart-outline'
+                            size={28}
+                            color="#FF4141"
+                        />
+                    )
+                
+                    }
                 </Pressable>
             )
         })
-    },[navigation, route.params?.data])
+    },[navigation, route.params?.data, favorite])
 
+    async function handleFavoriteReceipe(receipe){
+        if(favorite){
+            await removeItem(receipe.id)
+            setFavorite(false)
+        }else{
+            await saveFavorite("@APPRECEITAS", receipe)
+            setFavorite(true)
+        }
+    }
 
     function handleOpenVideo(){
         setShowVideo(true)
+    }
+
+    async function shareReceipe(){
+        try {
+            await Share.share({
+                url: route.params?.data.name.video,
+                message: `Receita : ${route.params?.data.name} \nIngredientes: ${route.params?.data.video}
+                \nIngredientes: ${route.params?.data.total_ingredients} \nEssa receita esta no App Receita Facil`
+            })
+        } catch (error) {
+            console.log(error)
+        }
     }
     return(
         <ScrollView contentContainerStyle={{paddingBottom: 14}} showsVerticalScrollIndicator={false} style={styles.container}>
@@ -52,7 +95,7 @@ export default function Detail({data}){
                     <Text style={styles.ingredientsText}>ingredientes ({route.params?.data.total_ingredients})</Text>
                 </View>
 
-                <Pressable>
+                <Pressable onPress={shareReceipe}>
                     <Feather name='share-2' size={24} color='#121212'/>
                 </Pressable>
             </View>
