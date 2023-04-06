@@ -1,9 +1,24 @@
-import { View, Text, StyleSheet} from 'react-native'
+import { Text, StyleSheet} from 'react-native'
+import { View } from 'moti'
 import COLOR from '../../services'
 
 export default function Logo(){
     return(
-        <View style={styles.logoArea}>
+        <View 
+        style={styles.logoArea}
+        from={{
+            opacity: 0,
+            translateY: -50,
+        }}
+        animate={{
+            opacity: 1,
+            translateY: 0,
+        }}
+        transition={{
+            type: 'timing',
+            duration: 850
+        }}
+        >
             <Text style={styles.logo}>Receita Fácil</Text>
         </View>
     )
