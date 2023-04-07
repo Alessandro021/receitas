@@ -1,6 +1,7 @@
 # Receita Fácil
 
-[![GitHub license](https://img.shields.io/github/license/Alessandro021/receitas)](https://github.com/Alessandro021/receitas/blob/main/LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/Alessandro021/receitas)](https://github.com/Alessandro021/receitas/stargazers)
+
 
 O aplicativo Receitas foi desenvolvido em React Native utilizando a plataforma Expo, como parte do evento React Native Insider promovido pelo canal Sujeito Programador no YouTube. O objetivo do aplicativo é fornecer uma maneira fácil de aprender a fazer diversas receitas culinárias.
 
