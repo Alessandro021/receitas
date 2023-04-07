@@ -26,9 +26,10 @@ export default function Detail({data}){
         getStatusFavorites()
 
         navigation.setOptions({
+            
             title: route.params?.data ? route.params?.data.name : "Detalhes da receita",
             headerRight: () => (
-                <Pressable onPress={() => handleFavoriteReceipe(route.params?.data)}>
+                <Pressable style={{width: 50,height: 50,justifyContent: "center"}}  onPress={() => handleFavoriteReceipe(route.params?.data)}>
                     {favorite ? 
                     (
                         <Ionicons
