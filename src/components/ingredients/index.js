@@ -19,6 +19,9 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         padding: 14,
         borderRadius: 5,
+        shadowColor: 'rgba(0,0,0,1)',
+        elevation: 3,
+        
     },
     name:{
         fontWeight: 500,

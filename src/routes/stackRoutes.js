@@ -1,15 +1,21 @@
-import {createNativeStackNavigator} from '@react-navigation/native-stack'
-import { Pressable } from 'react-native'
+import {CardStyleInterpolators, createStackNavigator  } from '@react-navigation/stack';
 
 import Home from '../pages/home'
 import Detail from '../pages/detail'
 import Search from '../pages/search'
 
-const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator();
 
 export default function StackRoutes(){
     return(
-        <Stack.Navigator>
+        <Stack.Navigator
+            screenOptions={{
+
+                gestureDirection: "horizontal",
+                cardStyleInterpolator:
+                    CardStyleInterpolators.forHorizontalIOS,
+            }}
+        >
             <Stack.Screen 
                 name='Home' 
                 component={Home}

@@ -23,7 +23,7 @@ export default function Routes(){
             }}
         >
             <Tab.Screen 
-                name='HomeTab' 
+                name='Inicio' 
                 component={StackRoutes} 
                 options={{
                     tabBarIcon: ({color, size, focused}) => {
@@ -35,7 +35,7 @@ export default function Routes(){
                 }}
             />
             <Tab.Screen 
-                name='FavoritesTab' 
+                name='Favoritos' 
                 component={Favorites}
                 options={{
                     tabBarIcon: ({color, size, focused}) => {

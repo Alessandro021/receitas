@@ -1,4 +1,4 @@
-import { Text, StyleSheet} from 'react-native'
+import { Text, StyleSheet, Image} from 'react-native'
 import { View } from 'moti'
 import COLOR from '../../services'
 
@@ -19,15 +19,18 @@ export default function Logo(){
             duration: 850
         }}
         >
-            <Text style={styles.logo}>Receita Fácil</Text>
+            <Image style={styles.img} source={require('../../../assets/logo.png')} />
         </View>
     )
 }
 
 const styles = StyleSheet.create({
     logoArea:{
-        backgroundColor: COLOR.COLORES.principal_claro,
         alignSelf: "flex-start", //A VIEW E ALINHADA COM O TAMANHO DO TEXTO.
+    },
+    img:{
+        width: 220,
+        height: 50,
         padding: 8,
         paddingLeft: 16,
         paddingRight: 20,
@@ -36,10 +39,5 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 8,
         borderBottomRightRadius: 32,
         marginBottom: 8,
-    },
-    logo:{
-        fontSize: 19,
-        fontWeight: "bold",
-        color: "#FFF"
     }
 })
