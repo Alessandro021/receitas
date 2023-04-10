@@ -21,7 +21,7 @@ Para instalar e executar o aplicativo, siga os passos abaixo:
 2. Clone este repositório: `git clone https://github.com/Alessandro021/receitas.git`
 3. Navegue até o diretório do projeto: `cd receitas`
 4. Instale as dependências do projeto: `npm install`
-5. Inicie o servidor de desenvolvimento: `npm start`
+5. Inicie o servidor de desenvolvimento: `npx expo start`
 6. Use o aplicativo Expo Go em seu dispositivo móvel ou emulador para executar o aplicativo.
 
 ## Contribuição
